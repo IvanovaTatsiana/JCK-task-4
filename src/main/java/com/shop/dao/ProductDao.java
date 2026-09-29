@@ -11,14 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Data Access Object (DAO) for Product entity management.
- * Provides atomic database operations using the custom ConnectionPool.
- * Includes pagination support for long list views according to requirements.
- *
- * @author Student
- * @version 1.0
- */
+
 public class ProductDao {
     private static final Logger logger = LoggerFactory.getLogger(ProductDao.class);
 
@@ -37,11 +30,7 @@ public class ProductDao {
         private static final ProductDao INSTANCE = new ProductDao();
     }
 
-    /**
-     * Gets the singleton instance of the ProductDao.
-     *
-     * @return the {@link ProductDao} instance
-     */
+
     public static ProductDao getInstance() {
         return Holder.INSTANCE;
     }
@@ -49,14 +38,7 @@ public class ProductDao {
     private ProductDao() {
     }
 
-    /**
-     * Retrieves a paginated list of products from the database.
-     * Helps efficiently handle long data records.
-     *
-     * @param limit maximum number of items to return
-     * @param offset shifting index position to start reading from
-     * @return a list of {@link Product} objects
-     */
+
     public List<Product> findAll(int limit, int offset) {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -83,12 +65,7 @@ public class ProductDao {
         return products;
     }
 
-    /**
-     * Finds a specific product artifact by its unique id identifier.
-     *
-     * @param id target product identity
-     * @return an {@link Optional} container holding the product data or empty state
-     */
+
     public Optional<Product> findById(long id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID)) {
@@ -112,15 +89,7 @@ public class ProductDao {
         return Optional.empty();
     }
 
-    /**
-     * Creates and inserts a new product entry into the schema registry.
-     *
-     * @param name product name parameter
-     * @param description product info string
-     * @param price base dynamic product financial value
-     * @param quantity default available stock count
-     * @return true if record successfully inserted, false otherwise
-     */
+
     public boolean create(String name, String description, BigDecimal price, int quantity) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT)) {
@@ -137,12 +106,7 @@ public class ProductDao {
         }
     }
 
-    /**
-     * Permanently deletes a custom product entry from database records.
-     *
-     * @param id identity of row to eliminate
-     * @return true if affected rows count greater than zero, false otherwise
-     */
+
     public boolean delete(long id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT)) {
@@ -155,12 +119,7 @@ public class ProductDao {
         }
     }
 
-    /**
-     * Returns total item count available within data schema records.
-     * Required to properly construct UI page layout controls.
-     *
-     * @return total item rows size count
-     */
+
     public int getTotalCount() {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();

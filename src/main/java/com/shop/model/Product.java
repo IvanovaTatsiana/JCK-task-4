@@ -3,13 +3,6 @@ package com.shop.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * Entity class representing a shop product.
- * Implemented using the GoF Builder pattern.
- *
- * @author Student
- * @version 1.0
- */
 public class Product {
     private Long id;
     private String name;

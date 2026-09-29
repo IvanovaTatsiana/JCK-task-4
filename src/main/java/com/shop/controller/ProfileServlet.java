@@ -13,12 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- * Controller handles account data viewings and secure profile configuration updates.
- *
- * @author Student
- * @version 1.0
- */
+
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(ProfileServlet.class);

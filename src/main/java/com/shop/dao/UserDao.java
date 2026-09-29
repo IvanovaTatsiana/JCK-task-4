@@ -8,13 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.Optional;
 
-/**
- * Data Access Object (DAO) for User entity management.
- * Implements Singleton pattern and handles SQL Injection protection.
- *
- * @author Student
- * @version 1.0
- */
+
 public class UserDao {
     private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 

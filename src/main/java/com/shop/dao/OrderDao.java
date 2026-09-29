@@ -10,14 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object (DAO) for Order entity management.
- * Controls atomic multi-table transactions and database integrity.
- * Implements the Singleton pattern.
- *
- * @author Student
- * @version 1.0
- */
+
 public class OrderDao {
     private static final Logger logger = LoggerFactory.getLogger(OrderDao.class);
 
@@ -37,11 +30,6 @@ public class OrderDao {
         private static final OrderDao INSTANCE = new OrderDao();
     }
 
-    /**
-     * Gets the singleton instance of the OrderDao.
-     *
-     * @return the {@link OrderDao} instance
-     */
     public static OrderDao getInstance() {
         return Holder.INSTANCE;
     }
@@ -49,15 +37,7 @@ public class OrderDao {
     private OrderDao() {
     }
 
-    /**
-     * Creates a new purchase order within a database transaction context.
-     *
-     * @param userId    customer identity
-     * @param productId product identifier
-     * @param qty       purchased items amount
-     * @param total     overall financial cost
-     * @return true if operation succeeded, false if transactional rollback occurred
-     */
+
     public boolean create(long userId, long productId, int qty, BigDecimal total) {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
@@ -109,12 +89,7 @@ public class OrderDao {
         }
     }
 
-    /**
-     * Obtains list of custom user purchase orders featuring product naming joins.
-     *
-     * @param userId unique targeting identifier
-     * @return list of matching tracking history {@link Order} entities
-     */
+
     public List<Order> findByUser(long userId) {
         List<Order> orders = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -142,13 +117,7 @@ public class OrderDao {
         return orders;
     }
 
-    /**
-     * Cancels an active purchase record returning item values back into storage.
-     *
-     * @param orderId primary key location index
-     * @param userId  authentication integrity match verification parameter
-     * @return true if state update transitions complete, false otherwise
-     */
+
     public boolean cancel(long orderId, long userId) {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {

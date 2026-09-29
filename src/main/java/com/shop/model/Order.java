@@ -3,14 +3,6 @@ package com.shop.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * Entity class representing a customer purchase order (Model in MVC).
- * Implemented using the GoF Builder pattern and supports database joins
- * by including product name descriptive property.
- *
- * @author Student
- * @version 1.1
- */
 public class Order {
     private Long id;
     private Long userId;
@@ -21,7 +13,6 @@ public class Order {
     private String status;
     private LocalDateTime createdAt;
 
-    // Private constructor enforcing object instantiation strictly via Builder sequence
     private Order(Builder builder) {
         this.id = builder.id;
         this.userId = builder.userId;
@@ -33,7 +24,6 @@ public class Order {
         this.createdAt = builder.createdAt;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -98,9 +88,6 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    /**
-     * Static nested Builder class providing fluent API interface for Order construction.
-     */
     public static class Builder {
         private Long id;
         private Long userId;
@@ -108,7 +95,7 @@ public class Order {
         private String productName;
         private Integer quantity;
         private BigDecimal totalPrice;
-        private String status = "CREATED"; // Default business logic entity status
+        private String status = "CREATED";
         private LocalDateTime createdAt;
 
         public Builder id(Long id) {
@@ -151,11 +138,6 @@ public class Order {
             return this;
         }
 
-        /**
-         * Builds concrete immutable metadata object context tracking instance.
-         *
-         * @return ready configured {@link Order} entity instance
-         */
         public Order build() {
             return new Order(this);
         }

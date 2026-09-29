@@ -5,13 +5,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-/**
- * Proxy wrapper for {@link Connection} to prevent direct closing
- * and return connections back to the custom pool instead.
- *
- * @author Student
- * @version 1.0
- */
 public class ProxyConnection implements Connection {
     private final Connection connection;
     private final ConnectionPool pool;

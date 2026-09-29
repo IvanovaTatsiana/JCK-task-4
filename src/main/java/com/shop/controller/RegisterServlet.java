@@ -13,12 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- * Controller managing account creation (Sign Up) with server-side validation and PRG pattern.
- *
- * @author Student
- * @version 1.0
- */
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(RegisterServlet.class);

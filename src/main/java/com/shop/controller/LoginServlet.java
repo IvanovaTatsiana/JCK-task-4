@@ -14,21 +14,13 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Optional;
 
-/**
- * Controller handles user authentication sequences (Sign In / Login).
- * Implements the Post/Redirect/Get (PRG) pattern to protect against F5 form re-submissions.
- *
- * @author Student
- * @version 1.0
- */
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
     private final UserDao userDao = UserDao.getInstance();
 
-    /**
-     * Renders the login page interface view (GET request).
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,9 +37,7 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
     }
 
-    /**
-     * Processes authentication credentials submitted by user form (POST request).
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -83,7 +73,6 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        // If authentication fails, redirect back to prevent F5 duplicate post states
         logger.warn("Authentication failed for username query context: {}", usernameParam);
         redirectToLoginWithError(request, response, "Invalid username or password credentials");
     }

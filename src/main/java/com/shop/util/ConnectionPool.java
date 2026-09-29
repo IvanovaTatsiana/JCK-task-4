@@ -25,11 +25,6 @@ public class ConnectionPool {
         private static final ConnectionPool INSTANCE = new ConnectionPool();
     }
 
-    /**
-     * Gets the singleton instance of the connection pool.
-     *
-     * @return the {@link ConnectionPool} instance
-     */
     public static ConnectionPool getInstance() {
         return Holder.INSTANCE;
     }
@@ -68,11 +63,6 @@ public class ConnectionPool {
         }
     }
 
-    /**
-     * Borrows an active connection from the pool.
-     *
-     * @return a {@link Connection} instance
-     */
     public Connection getConnection() {
         Connection connection = null;
         try {
@@ -85,11 +75,6 @@ public class ConnectionPool {
         return connection;
     }
 
-    /**
-     * Releases a connection back into the pool.
-     *
-     * @param connection the connection to release
-     */
     public void releaseConnection(Connection connection) {
         if (connection instanceof ProxyConnection && givenAwayConnections.remove(connection)) {
             try {
@@ -103,9 +88,6 @@ public class ConnectionPool {
         }
     }
 
-    /**
-     * Destroys the connection pool during application shutdown.
-     */
     public void destroyPool() {
         for (int i = 0; i < POOL_SIZE; i++) {
             try {

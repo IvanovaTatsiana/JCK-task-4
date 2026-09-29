@@ -16,17 +16,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Controller handles shop catalog product viewing with pagination and admin management.
- *
- * @author Student
- * @version 1.1
- */
+
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(ProductServlet.class);
     private final ProductDao productDao = ProductDao.getInstance();
-    private static final int PAGE_SIZE = 5; // Rows amount per single layout view page
+    private static final int PAGE_SIZE = 5;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

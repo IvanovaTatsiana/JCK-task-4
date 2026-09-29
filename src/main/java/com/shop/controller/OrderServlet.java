@@ -15,13 +15,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Controller managing customer shopping cart operations and order history.
- * Employs the Post/Redirect/Get (PRG) pattern for checkout submission states.
- *
- * @author Student
- * @version 1.1
- */
 @WebServlet("/orders")
 public class OrderServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(OrderServlet.class);
